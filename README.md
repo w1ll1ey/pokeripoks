@@ -6,3 +6,5 @@ Suunnitelmissa sovellus kavereideni Minecraft-palvelimella tehtyjen rakennusproj
 - käyttäjät voivat tarkistella kaikkia luotuja projekteja sekä niiden tietoja
 - käyttäjät voivat hakea projekteja tietyillä ehdoilla, kuten esim. projektit 100 palikan etäisyydellä
 - projektitiedot säilytetään SQL-tietokannassa
+
+Tästä eteenpäin sovellusta on tarkoitus mahdollisesti laajentaa sen mukaan, kuin aikaa riittää ja ideoita tulee tehdessä.
