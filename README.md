@@ -22,5 +22,5 @@ ominaisuudet:
 - joko yksittäisten tietojen tai kokonaisuuksien vertailu toisiinsa valittujen autojen välillä
 - mahdollisuus tallentaa kokonaisia autovertailuja (esim. käyttöauto kesää varten, harrasteauto tulevaisuudessa kun on rahaa jne.)
 - mahdollinen idea mikä tuli myös mieleen: käyttäjät voi syöttää kokemuksia omistamistaan autoista ja siten esim. keskimääräisiä huoltokustannuksia voisi saada selville
-
+- tähän tuli vielä sellainen idea että tässä olisi mahdollisuus hyödyntää jonkinlaista pohja-databasea jonka avulla ainakin joitain tietoja autoista olisi jo haettavissa ja tällöin ohjelma voisi samalla toimia myös apuvälineenä teknisten tietojen hakuun, tämä toki vaatisi aika paljon työtä ja moderaattoreita
 
