@@ -1,0 +1,8 @@
+<label for="manufacturer">Merkki:</label>
+
+<select name="manufacturer" id="manufacturer">
+    {% for manufacturer in list_of_manufacturers %}
+        <option value={{ manufacturer.lower }}>{{ manufacturer }}</option>
+    {% endfor %}
+</select>
+

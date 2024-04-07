@@ -1,0 +1,23 @@
+{% if session.email %}
+<p>Olet kirjautunut sähköpostilla {{ session.email }}</p>
+<a href="/logout">Kirjaudu ulos</a>
+<br>
+<a href="/createcar">Lisää auto</a>
+{% else %}
+<form action="/login" method="POST">
+<p>Sähköposti:<br>
+<input type="text" name="email"></p>
+<p>Salasana:<br>
+<input type="password" name="password"></p>
+<input type="submit" value="Kirjaudu sisään">
+</form>
+<br>
+<form action="/register" method="POST">
+<p>Sähköposti:<br>
+<input type="text" name="email"></p>
+<p>Salasana:<br>
+<input type="password" name="password"></p>
+<br>
+<input type="submit" value="Rekisteröidy">
+</form>
+{% endif %}
