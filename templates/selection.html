@@ -1,8 +1,17 @@
-<label for="manufacturer">Merkki:</label>
-
-<select name="manufacturer" id="manufacturer">
-    {% for manufacturer in list_of_manufacturers %}
-        <option value={{ manufacturer.lower }}>{{ manufacturer }}</option>
-    {% endfor %}
-</select>
-
+<form action="/addcar" method="POST">
+    Auton tiedot:
+    <br>
+    Merkki:
+    <input type="text" name="manufacturer">
+    <br>
+    Malli:
+    <input type="text" name="model">
+    <br>
+    Sukupolvi:
+    <input type="text" name="generation">
+    <br>
+    Tyyppi (esim. 2.0TDI)
+    <input type="text" name="type">
+    <br>
+    <input type="submit" value="Lisää auto vertailuun">
+    </form>
