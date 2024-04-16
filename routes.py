@@ -84,8 +84,10 @@ def addcar():
 def comparison():
     comparison = request.form["comparison"]
     carids = qry.get_comparison_cars(comparison)
-    cardata = qry.get_car_data(carids[0])
-    print(str(cardata))
+    session["comparisonid"] = comparison
+    if carids:
+        cardata = qry.get_car_data(carids)
+        print(cardata)
     return render_template("comparison.html")
 
 

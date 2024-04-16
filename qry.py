@@ -67,7 +67,8 @@ def get_comparison_cars(comparisonid):
     return carids
 
 def get_car_data(carid):
-    sql = text("SELECT (manufacturer, model, generation, type) FROM cars WHERE id=:id")
-    result = db.session.execute(sql, {"id":carid})
-    extract = result.fetchall
+    ids = tuple(carid)
+    sql = text("SELECT (manufacturer, model, generation, type) FROM cars WHERE id IN :id")
+    result = db.session.execute(sql, {"id":ids})
+    extract = result.fetchall()
     return extract
