@@ -4,6 +4,7 @@ import json
 from flask import redirect, render_template, request, session, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
 
+
 @app.route("/")
 def index():
     email = session["email"]
@@ -87,8 +88,9 @@ def comparison():
     session["comparisonid"] = comparison
     if carids:
         cardata = qry.get_car_data(carids)
-        print(cardata)
-    return render_template("comparison.html")
+        return render_template("comparison.html", cardata = cardata, carids = carids)
+    else:
+        return render_template("comparison.html")
 
 
 

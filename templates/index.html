@@ -4,7 +4,7 @@
 <br>
 <a href="/createcar">Lisää auto</a>
 <br>
-<p>Uusi vertailu<br>
+<p>Luo uusi vertailu:
 <form action="/createcomparison" method="POST">
 <br>
 Nimi:
@@ -13,6 +13,8 @@ Nimi:
 </form>
 <br>
 <label for="comparisons">Vertailusi:</label>
+<br>
+<br>
 <form action="/comparison" method="POST">
 <select name="comparison" id="comparison">
   {% for comparison in comparisons %}
