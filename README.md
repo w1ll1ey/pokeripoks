@@ -5,10 +5,11 @@
 1. Kloonaa repositorio tietokoneellesi
 2. Lisää sen juurikansioon .env-tiedosto ja määritä sen sisältö näin:
 ```DATABASE_URL=<add-your-local-database>
-SECRET_KEY=<add-your-secret-key>```
+SECRET_KEY=<add-your-secret-key>
+```
 3. Aktivoi virtuaaliympäristö:
 ```$ python3 -m venv venv```
-```$ source venv/bin/activate```
+$ source venv/bin/activate
 4. Asenna sovelluksen riippuvuudet:
 ```$ pip install -r ./requirements.txt```
 5. Määritä tietokannan skeema:
