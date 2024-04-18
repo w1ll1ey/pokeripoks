@@ -3,7 +3,9 @@ CREATE TABLE public.cars (
     manufacturer text,
     model text,
     generation text,
-    type text
+    type text,
+    avgconsumption integer,
+    fuel text
 );
 CREATE TABLE public.comparisoncars (
     comparisonid integer,
@@ -13,7 +15,9 @@ CREATE TABLE public.comparisons (
     id integer NOT NULL,
     name text,
     userid integer,
-    kmyear integer
+    kmyear integer,
+    gasprice integer,
+    dieselprice integer
 );
 CREATE TABLE public.users (
     id integer NOT NULL,
