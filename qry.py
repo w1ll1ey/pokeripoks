@@ -13,9 +13,9 @@ def add_userdata(email, hash_value):
     db.session.execute(sql, {"email":email, "password":hash_value})
     db.session.commit()
 
-def add_car(manufacturer, model, gen, type):
-    sql = "INSERT INTO cars (manufacturer, model, generation, type) VALUES (:manufacturer, :model, :generation, :type)"
-    db.session.execute(text(sql), {"manufacturer":manufacturer, "model":model, "generation":gen, "type":type})
+def add_car(manufacturer, model, gen, type, avgconsumption):
+    sql = "INSERT INTO cars (manufacturer, model, generation, type, avgconsumption) VALUES (:manufacturer, :model, :generation, :type, :avgconsumption)"
+    db.session.execute(text(sql), {"manufacturer":manufacturer, "model":model, "generation":gen, "type":type, "avgconsumption":avgconsumption})
     db.session.commit()
 
 def get_user_id(email):

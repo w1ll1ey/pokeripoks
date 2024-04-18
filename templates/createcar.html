@@ -1,6 +1,11 @@
 <a href="/">Etusivu</a>
 <br>
 <br>
+{% if success %}
+{{manufacturer}} {{ model }} {{ type }} tallennettu järjestelmään onnistuneesti!
+<br>
+<br>
+{% endif %}
 <form action="/submit" method="POST">
     Auton tiedot:
     <br>
@@ -10,11 +15,15 @@
     Malli:
     <input type="text" name="model">
     <br>
-    Sukupolvi:
+    Sukupolvi (esim. Gen 7):
     <input type="text" name="generation">
     <br>
-    Tyyppi (esim. 2.0TDI)
+    Tyyppi (esim. 2.0TDI):
     <input type="text" name="type">
+    <br>
+    Yhdistetty polttoaineenkulutus:
+    <input type="number" name="avgconsumption" step=".1">
+    <br>
     <br>
     <input type="submit" value="Tallenna auto järjestelmään">
     </form>

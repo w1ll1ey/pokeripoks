@@ -1,9 +1,14 @@
 <a href="/editcomparison">Lisää auto vertailuun</a>
 <br>
-<name="car"></name>
 {% for data in cardata %}
-<p>{{data[1]}}
-{{data[2]}}
-{{data[3]}}
-{{data[4]}}</p>
+    <p>{{data[1]}}
+    {{data[2]}}
+    {{data[3]}}
+    {{data[4]}}
+    {% if data[5] %}
+    <br>
+    <br>
+    Yhdistetty kulutus:
+        {{data[5] / 10}} l / 100 km
+    {% endif %}</p>
 {% endfor %}

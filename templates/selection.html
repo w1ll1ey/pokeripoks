@@ -1,6 +1,11 @@
 <a href="/">Etusivu</a>
 <br>
 <br>
+{% if success %}
+Auto lisätty vertailuun!
+<br>
+<br>
+{% endif %}
 <form action="/addcar" method="POST">
     Auton tiedot:
     <br>

@@ -7,10 +7,13 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 @app.route("/")
 def index():
-    email = session["email"]
-    user_id = qry.get_user_id(email)
-    comparisons = qry.get_comparison_data(user_id)
-    return render_template("index.html", comparisons = comparisons)
+    try:
+        email = session["email"]
+        user_id = qry.get_user_id(email)
+        comparisons = qry.get_comparison_data(user_id)
+        return render_template("index.html", comparisons = comparisons)
+    except AttributeError:
+        return render_template("index.html")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -49,12 +52,10 @@ def submit():
     model = request.form["model"]
     gen = request.form["generation"]
     type = request.form["type"]
-    qry.add_car(manufacturer, model, gen, type)
-    return redirect("/createcar")
-
-#@app.route("/result", methods=["POST"])
-#def result():
-#    return render_template("createcarresult.html", manufacturer=request.form["manufacturer"], model=request.form["model"], type=request.form["type"])
+    avgconsumption = float(request.form["avgconsumption"]) * 10
+    qry.add_car(manufacturer, model, gen, type, avgconsumption)
+    success = True
+    return render_template("createcar.html", manufacturer = manufacturer, model = model, type = type, success = success)
 
 @app.route("/createcomparison", methods=["POST"])
 def createcomparison():
@@ -78,8 +79,12 @@ def addcar():
     type = request.form["type"]
     carid = qry.get_carid(manufacturer, model, gen, type)
     comparisonid = session["comparisonid"]
-    qry.update_comparison(comparisonid, carid)
-    return redirect("/editcomparison")
+    if carid == "None":
+        return render_template("error.html", error = "Lisäämääsi autoa ei löydy tietokannasta.")
+    else:
+        qry.update_comparison(comparisonid, carid)
+        success = True
+        return render_template("selection.html", success = success)
 
 @app.route("/comparison", methods=["POST"])
 def comparison():
