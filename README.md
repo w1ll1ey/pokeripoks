@@ -1,21 +1,34 @@
-Edit 18.3.
+Autovertailusovellus:
 
-Vikonlopun aikana tuli idea myös vaihtoehtoisesta sovelluksesta, joka saattaisi inspiroida enemmän. Kyseessä olisi sovellus, johon voisi tallentaa teknisiä yms. tietoja eri autoista vertailua varten. Tämä olisi käytännöllistä, sillä lähes aina kaikissa vertailuohjelmissa tiedot katoavat verkkosivulta poistuttaessa. Tarkoitus siis olla esimerkiksi apuväline auton ostamista varten.
+Käyttöohjeet:
 
-ominaisuudet:
+1. Kloonaa repositorio tietokoneellesi
+2. Lisää sen juurikansioon .env-tiedosto ja määritä sen sisältö näin:
+DATABASE_URL=<add-your-local-database>
+SECRET_KEY=<add-your-secret-key>
+3. Aktivoi virtuaaliympäristö:
+$ python3 -m venv venv
+$ source venv/bin/activate
+4. Asenna sovelluksen riippuvuudet:
+$ pip install -r ./requirements.txt
+5. Määritä tietokannan skeema:
+$ psql < schema.sql
+6. Käynnistä sovellus:
+$ flask run
 
-- tunnuksien luominen ja niillä kirjautuminen
-- autojen luominen ja niille tietojen antaminen (mitat, kulutus, teho jne. jne. todella pitkälle laajennettavissa)
-- mahdollisesti muiden syöttämien tietojen hyödyntäminen (tietokanta sitä hyödyllisempi mitä enemmän käyttäjiä)
-- tietojen saaminen tietokannasta, esim. käyttökustannukset vuodessa annetulla ajomäärällä teho/paino-suhde, teho/kulutus-suhde jnejne.
-- joko yksittäisten tietojen tai kokonaisuuksien vertailu toisiinsa valittujen autojen välillä
-- mahdollisuus tallentaa kokonaisia autovertailuja (esim. käyttöauto kesää varten, harrasteauto tulevaisuudessa kun on rahaa jne.)
-- mahdollinen idea mikä tuli myös mieleen: käyttäjät voi syöttää kokemuksia omistamistaan autoista ja siten esim. keskimääräisiä huoltokustannuksia voisi saada selville
-- tähän tuli vielä sellainen idea että tässä olisi mahdollisuus hyödyntää jonkinlaista pohja-databasea jonka avulla ainakin joitain tietoja autoista olisi jo haettavissa ja tällöin ohjelma voisi samalla toimia myös apuvälineenä teknisten tietojen hakuun, tämä toki vaatisi aika paljon työtä ja moderaattoreita
+NYKYINEN TILA:
 
-Edit 7.4.
+- käyttäjä voi luoda tunnukset ja kirjautua niillä sisään
+- käyttäjä voi luoda auton yhteiseen tietokantaan ja antaa sille tietoja
+- käyttäjä voi luoda vertailuja henkilökohtaisilla parametreillä ja lisätä niihin autoja
+- sovellus hyödyntää tietokannan tietoja ja sen lisäksi että esittelee ne vertailussa laskee niistä myös uusia tietoja, kuten käyttökustannusten osa-alueita (polttoaine, verot jne.) ja kokonaisuuksia
 
-- sovelluksessa on nyt luotu pohja jota lähteä kehittämään
-- tunnusten luominen ja kirjautuminen toimii, ja väärillä tunnuksilla ei pääse sisään
-- käyttäjä voi lisätä autoja kaikkien käyttäjien yhteiseen tietokantaan
-- muuta toiminnallisuutta ei ole kehitetty vielä käytännölliseksi asti, mutta ne on jo kehittelyn alla
+TODO:
+
+- mahdollisuus syöttää ja hyödyntää enemmän dataa autoista
+- mahdollisuus syöttää enemmän tietoja vertailun yksilöintiä varten
+- parempi visuaalinen toteutus ja muotoilu etenkin vertailun kohdalta
+- mahdollinen: käyttäjät voi syöttää kokemuksia omistamistaan autoista ja siten esim. keskimääräisiä huoltokustannuksia voisi saada selville
+- käytettävyyden parantaminen (merkittävästi)
+- luonnoskoodien poisto
+

@@ -1,10 +1,10 @@
 from app import app
 import qry
-import json
-from flask import redirect, render_template, request, session, jsonify
+from flask import redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 ##TODO: WLTP:n lisääminen NEDC-mittauksen rinnalle if elif lauseilla
+##TODO: dropdown-menut auton lisäämiseksi vertailuun
 
 
 @app.route("/")
