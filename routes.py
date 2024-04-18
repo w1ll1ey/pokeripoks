@@ -4,15 +4,17 @@ import json
 from flask import redirect, render_template, request, session, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
 
+##TODO: WLTP:n lisääminen NEDC-mittauksen rinnalle if elif lauseilla
+
 
 @app.route("/")
 def index():
     try:
         email = session["email"]
         user_id = qry.get_user_id(email)
-        comparisons = qry.get_comparison_data(user_id)
+        comparisons = qry.get_comparison_id(user_id)
         return render_template("index.html", comparisons = comparisons)
-    except AttributeError:
+    except KeyError:
         return render_template("index.html")
 
 @app.route("/login", methods=["POST"])
@@ -54,7 +56,10 @@ def submit():
     type = request.form["type"]
     avgconsumption = float(request.form["avgconsumption"]) * 10
     fuel = request.form["fuel"]
-    qry.add_car(manufacturer, model, gen, type, avgconsumption, fuel)
+    co2nedc = request.form["CO2NEDC"]
+    grossweight = request.form["grossweight"]
+    nedcprice = qry.get_nedcprice(co2nedc)
+    qry.add_car(manufacturer, model, gen, type, avgconsumption, fuel, grossweight, co2nedc, nedcprice)
     success = True
     return render_template("createcar.html", manufacturer = manufacturer, model = model, type = type, success = success)
 
@@ -94,10 +99,11 @@ def addcar():
 def comparison():
     comparison = request.form["comparison"]
     carids = qry.get_comparison_cars(comparison)
+    comparisondata = qry.get_comparison_data(comparison)
     session["comparisonid"] = comparison
     if carids:
         cardata = qry.get_car_data(carids)
-        return render_template("comparison.html", cardata = cardata, carids = carids)
+        return render_template("comparison.html", cardata = cardata, carids = carids, comparisondata = comparisondata)
     else:
         return render_template("comparison.html")
 

@@ -5,7 +5,10 @@ CREATE TABLE public.cars (
     generation text,
     type text,
     avgconsumption integer,
-    fuel text
+    fuel text,
+    grossweight integer,
+    co2nedc integer,
+    nedcprice integer
 );
 CREATE TABLE public.comparisoncars (
     comparisonid integer,
@@ -18,6 +21,10 @@ CREATE TABLE public.comparisons (
     kmyear integer,
     gasprice integer,
     dieselprice integer
+);
+CREATE TABLE public.nedctaxes (
+    co2 integer,
+    price integer
 );
 CREATE TABLE public.users (
     id integer NOT NULL,

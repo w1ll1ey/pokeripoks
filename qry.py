@@ -13,9 +13,9 @@ def add_userdata(email, hash_value):
     db.session.execute(sql, {"email":email, "password":hash_value})
     db.session.commit()
 
-def add_car(manufacturer, model, gen, type, avgconsumption, fuel):
-    sql = "INSERT INTO cars (manufacturer, model, generation, type, avgconsumption, fuel) VALUES (:manufacturer, :model, :generation, :type, :avgconsumption, :fuel)"
-    db.session.execute(text(sql), {"manufacturer":manufacturer, "model":model, "generation":gen, "type":type, "avgconsumption":avgconsumption, "fuel":fuel})
+def add_car(manufacturer, model, gen, type, avgconsumption, fuel, grossweight, co2nedc, nedcprice):
+    sql = "INSERT INTO cars (manufacturer, model, generation, type, avgconsumption, fuel, grossweight, co2nedc, nedcprice) VALUES (:manufacturer, :model, :generation, :type, :avgconsumption, :fuel, :grossweight, :co2nedc, :nedcprice)"
+    db.session.execute(text(sql), {"manufacturer":manufacturer, "model":model, "generation":gen, "type":type, "avgconsumption":avgconsumption, "fuel":fuel, "grossweight":grossweight, "co2nedc":co2nedc, "nedcprice":nedcprice})
     db.session.commit()
 
 def get_user_id(email):
@@ -44,16 +44,21 @@ def get_carid(manufacturer, model, gen, type):
     car_id = str(extract).replace("(", "").replace(")", "").replace(",", "")
     return car_id
 
-
 def update_comparison(comparisonid, carid):
     sql = text("INSERT INTO comparisoncars (comparisonid, carid) VALUES (:comparisonid, :carid)")
     db.session.execute(sql, {"comparisonid":comparisonid, "carid":carid})
     db.session.commit()
 
-def get_comparison_data(userid):
+def get_comparison_id(userid):
     sql = text("SELECT name, id FROM comparisons WHERE userid=:userid")
     result = db.session.execute(sql, {"userid":userid})
     extract = result.fetchall()
+    return extract
+
+def get_comparison_data(id):
+    sql = text("SELECT name, kmyear, gasprice, dieselprice FROM comparisons WHERE id=:id")
+    result = db.session.execute(sql, {"id":id})
+    extract = result.fetchone()
     return extract
 
 def get_comparison_cars(comparisonid):
@@ -72,3 +77,11 @@ def get_car_data(carid):
     result = db.session.execute(sql, {"id":ids})
     extract = result.fetchall()
     return extract
+
+def get_nedcprice(co2nedc):
+    sql = text("SELECT price FROM nedctaxes WHERE co2<=:co2nedc ORDER BY price DESC")
+    result = db.session.execute(sql, {"co2nedc":co2nedc})
+    extract = result.fetchone()
+    for value in extract:
+        nedcprice = value
+    return nedcprice
