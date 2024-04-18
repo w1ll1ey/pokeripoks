@@ -53,7 +53,8 @@ def submit():
     gen = request.form["generation"]
     type = request.form["type"]
     avgconsumption = float(request.form["avgconsumption"]) * 10
-    qry.add_car(manufacturer, model, gen, type, avgconsumption)
+    fuel = request.form["fuel"]
+    qry.add_car(manufacturer, model, gen, type, avgconsumption, fuel)
     success = True
     return render_template("createcar.html", manufacturer = manufacturer, model = model, type = type, success = success)
 
@@ -61,8 +62,11 @@ def submit():
 def createcomparison():
     email = session["email"]
     name = request.form["name"]
+    kmyear = request.form["kmyear"]
+    gasprice = float(request.form["gasprice"]) * 100
+    dieselprice = float(request.form["dieselprice"]) * 100
     userid = qry.get_user_id(email)
-    qry.add_comparison(name, userid)
+    qry.add_comparison(name, userid, kmyear, gasprice, dieselprice)
     value = qry.get_comparisonid(name)
     session["comparisonid"] = value
     return redirect("/editcomparison")

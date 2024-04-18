@@ -1,20 +1,23 @@
 {% if session.email %}
 <p>Olet kirjautunut sähköpostilla {{ session.email }}</p>
-<a href="/logout">Kirjaudu ulos</a>
-<br>
-<a href="/createcar">Lisää auto</a>
-<br>
-<p>Luo uusi vertailu:
+<p><a href="/logout">Kirjaudu ulos</a></p>
+<p><a href="/createcar">Lisää auto</a></p>
+<p>Luo uusi vertailu:</p>
 <form action="/createcomparison" method="POST">
+<p>Nimi:
+<input type="text" required name="name">
 <br>
-Nimi:
-<input type="text" name="name"></p>
+Ajomäärä vuodessa:
+<input type="number" required name="kmyear" step="1000">kilometriä
+<br>
+Bensiinin keskihinta alueellasi:
+<input type="number" required name="gasprice" step=".01" min="1" max="3">€ / l
+<br>
+Dieselin keskhinta alueellasi:
+<input type="number" required name="dieselprice" step=".01" min="1" max="3">€ / l</p>
 <input type="submit" value="Luo vertailu">
 </form>
-<br>
-<label for="comparisons">Vertailusi:</label>
-<br>
-<br>
+<p><label for="comparisons">Vertailusi:</label></p>
 <form action="/comparison" method="POST">
 <select name="comparison" id="comparison">
   {% for comparison in comparisons %}

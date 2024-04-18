@@ -13,9 +13,9 @@ def add_userdata(email, hash_value):
     db.session.execute(sql, {"email":email, "password":hash_value})
     db.session.commit()
 
-def add_car(manufacturer, model, gen, type, avgconsumption):
-    sql = "INSERT INTO cars (manufacturer, model, generation, type, avgconsumption) VALUES (:manufacturer, :model, :generation, :type, :avgconsumption)"
-    db.session.execute(text(sql), {"manufacturer":manufacturer, "model":model, "generation":gen, "type":type, "avgconsumption":avgconsumption})
+def add_car(manufacturer, model, gen, type, avgconsumption, fuel):
+    sql = "INSERT INTO cars (manufacturer, model, generation, type, avgconsumption, fuel) VALUES (:manufacturer, :model, :generation, :type, :avgconsumption, :fuel)"
+    db.session.execute(text(sql), {"manufacturer":manufacturer, "model":model, "generation":gen, "type":type, "avgconsumption":avgconsumption, "fuel":fuel})
     db.session.commit()
 
 def get_user_id(email):
@@ -25,9 +25,9 @@ def get_user_id(email):
     user_id = str(extract).replace("(", "").replace(")", "").replace(",", "")
     return user_id
 
-def add_comparison(name, userid):
-    sql = text("INSERT INTO comparisons (name, userid) VALUES (:name, :userid)")
-    db.session.execute(sql, {"name":name, "userid":userid})
+def add_comparison(name, userid, kmyear, gasprice, dieselprice):
+    sql = text("INSERT INTO comparisons (name, userid, kmyear, gasprice, dieselprice) VALUES (:name, :userid, :kmyear, :gasprice, :dieselprice)")
+    db.session.execute(sql, {"name":name, "userid":userid, "kmyear":kmyear, "gasprice":gasprice, "dieselprice":dieselprice})
     db.session.commit()
 
 def get_comparisonid(name):

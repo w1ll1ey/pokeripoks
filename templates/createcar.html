@@ -1,15 +1,10 @@
 <a href="/">Etusivu</a>
-<br>
-<br>
 {% if success %}
-{{manufacturer}} {{ model }} {{ type }} tallennettu järjestelmään onnistuneesti!
-<br>
-<br>
+<p>{{manufacturer}} {{ model }} {{ type }} tallennettu järjestelmään onnistuneesti!</p>
 {% endif %}
 <form action="/submit" method="POST">
-    Auton tiedot:
-    <br>
-    Merkki:
+    <p>Auton tiedot:</p>
+    <p>Merkki:
     <input type="text" name="manufacturer">
     <br>
     Malli:
@@ -21,9 +16,11 @@
     Tyyppi (esim. 2.0TDI):
     <input type="text" name="type">
     <br>
+    Käyttövoima:
+    <input type="radio" name="fuel" value="gas"> Bensiini
+    <input type="radio" name="fuel" value="diesel"> Diesel    
+    <br>
     Yhdistetty polttoaineenkulutus:
-    <input type="number" name="avgconsumption" step=".1">
-    <br>
-    <br>
-    <input type="submit" value="Tallenna auto järjestelmään">
+    <input type="number" name="avgconsumption" step=".1"></p>
+    <p><input type="submit" value="Tallenna auto järjestelmään"></p>
     </form>
