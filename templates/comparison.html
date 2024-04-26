@@ -2,7 +2,7 @@
 <p>{{comparisondata[0]}}</p>
 <a href="/editcomparison">Lisää auto vertailuun</a>
 <br>
-{% for data in cardata %}
+{% for data, insurance in cardatazip %}
     <p>{{data[1]}} {{data[2]}} {{data[3]}} {{data[4]}}</p>
     {% if data[6] %}
         <p>Käyttövoima:
@@ -40,22 +40,27 @@
         {{ nedctax }} euroa</p>
     {% endif %}
     {% if 'diesel' in data %}
-    <p>Käyttövoimaveron määrä vuodessa arviolta:
-    {% set dieseltax = data[7] / 100 | round(0, 'floor') * 20.075 %} 
-    {{ dieseltax | round(2) }} euroa</p>
-    <p>Yhdistetty verojen määrä vuodessa arviolta:
-    {{nedctax + dieseltax | round(2) }} euroa</p>
+        <p>Käyttövoimaveron määrä vuodessa arviolta:
+        {% set dieseltax = data[7] / 100 | round(0, 'floor') * 20.075 %} 
+        {{ dieseltax | round(2) }} euroa</p>
+        <p>Yhdistetty verojen määrä vuodessa arviolta:
+        {{nedctax + dieseltax | round(2) }} euroa</p>
     {% else %}
-    <p>Yhdistetty verojen määrä vuodessa arviolta:
-    {{nedctax | round(2) }} euroa</p>
+        <p>Yhdistetty verojen määrä vuodessa arviolta:
+        {{nedctax | round(2) }} euroa</p>
     {% endif %}
-    {% if data[5] and data[6] and data[7] and data[8] and data[9] %}
+    {% if insurance %}
+        <p>Vakuutusmaksujen määrä vuodessa:
+        {% set insuranceprice = insurance / 100 %}
+        {{ insuranceprice }} euroa</p>
+    {% endif %}
+    {% if data[5] and data[6] and data[7] and data[8] and data[9] and insurance %}
         <p>Kokonaiskulut vuoden ajalta:
         {% if 'gas' in data %}
-            {% set totalprice = nedctax + gasprice %}
+            {% set totalprice = nedctax + gasprice + insuranceprice %}
             {{ totalprice | round(2) }} euroa
         {% elif 'diesel' in data %}
-            {% set totalprice = nedctax + dieseltax + dieselprice %}
+            {% set totalprice = nedctax + dieseltax + dieselprice + insuranceprice %}
             {{ totalprice | round(2) }} euroa</p>
         {% endif %}
     {% endif %}  

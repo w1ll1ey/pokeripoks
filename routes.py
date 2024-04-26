@@ -5,6 +5,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 ##TODO: WLTP:n lisääminen NEDC-mittauksen rinnalle if elif lauseilla
 ##TODO: dropdown-menut auton lisäämiseksi vertailuun
+##TODO: vakuutusten lisääminen kululaskentaan
 
 
 @app.route("/")
@@ -86,24 +87,28 @@ def addcar():
     model = request.form["model"]
     gen = request.form["generation"]
     type = request.form["type"]
+    insurance = float(request.form["insurance"]) * 100
     carid = qry.get_carid(manufacturer, model, gen, type)
     comparisonid = session["comparisonid"]
     if carid == "None":
         return render_template("error.html", error = "Lisäämääsi autoa ei löydy tietokannasta.")
     else:
-        qry.update_comparison(comparisonid, carid)
+        qry.update_comparison(comparisonid, carid, insurance)
         success = True
         return render_template("selection.html", success = success)
 
 @app.route("/comparison", methods=["POST"])
 def comparison():
     comparison = request.form["comparison"]
-    carids = qry.get_comparison_cars(comparison)
+    comparisoncars = qry.get_comparison_cars(comparison)
     comparisondata = qry.get_comparison_data(comparison)
     session["comparisonid"] = comparison
-    if carids:
-        cardata = qry.get_car_data(carids)
-        return render_template("comparison.html", cardata = cardata, carids = carids, comparisondata = comparisondata)
+    if comparisoncars:
+        ids = [id[0] for id in comparisoncars]
+        insurances = [insurance[1] for insurance in comparisoncars]
+        cardata = qry.get_car_data(ids)
+        cardatazip = zip(cardata, insurances)
+        return render_template("comparison.html", cardatazip = cardatazip, comparisondata = comparisondata, comparisoncars = comparisoncars)
     else:
         return render_template("comparison.html")
 

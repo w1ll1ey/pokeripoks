@@ -1,25 +1,22 @@
 <a href="/">Etusivu</a>
-<br>
-<br>
 {% if success %}
-Auto lisätty vertailuun!
-<br>
-<br>
+<p>Auto lisätty vertailuun!</p>
 {% endif %}
 <form action="/addcar" method="POST">
-    Auton tiedot:
-    <br>
-    Merkki:
-    <input type="text" name="manufacturer">
+    <p>Auton tiedot:</p>
+    <p>Merkki:
+    <input type="text" required name="manufacturer">
     <br>
     Malli:
-    <input type="text" name="model">
+    <input type="text" required name="model">
     <br>
     Sukupolvi:
-    <input type="text" name="generation">
+    <input type="text" required name="generation">
     <br>
     Tyyppi (esim. 2.0TDI)
-    <input type="text" name="type">
+    <input type="text" required name="type">
     <br>
-    <input type="submit" value="Lisää auto vertailuun">
+    Vakuutuskulusi tälle autolle:
+    <input type="number" required name="insurance" step=".01">euroa</p>
+    <p><input type="submit" value="Lisää auto vertailuun"></p>
     </form>

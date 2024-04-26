@@ -44,9 +44,9 @@ def get_carid(manufacturer, model, gen, type):
     car_id = str(extract).replace("(", "").replace(")", "").replace(",", "")
     return car_id
 
-def update_comparison(comparisonid, carid):
-    sql = text("INSERT INTO comparisoncars (comparisonid, carid) VALUES (:comparisonid, :carid)")
-    db.session.execute(sql, {"comparisonid":comparisonid, "carid":carid})
+def update_comparison(comparisonid, carid, insurance):
+    sql = text("INSERT INTO comparisoncars (comparisonid, carid, insurance) VALUES (:comparisonid, :carid, :insurance)")
+    db.session.execute(sql, {"comparisonid":comparisonid, "carid":carid, "insurance":insurance})
     db.session.commit()
 
 def get_comparison_id(userid):
@@ -62,14 +62,10 @@ def get_comparison_data(id):
     return extract
 
 def get_comparison_cars(comparisonid):
-    sql = text("SELECT carid FROM comparisoncars WHERE comparisonid=:comparisonid")
+    sql = text("SELECT carid, insurance FROM comparisoncars WHERE comparisonid=:comparisonid")
     result = db.session.execute(sql, {"comparisonid":comparisonid})
     extract = result.fetchall()
-    carids = []
-    for value in extract:
-        id = str(value).replace("(", "").replace(")", "").replace(",", "")
-        carids.append(id)
-    return carids
+    return extract
 
 def get_car_data(carid):
     ids = tuple(carid)
