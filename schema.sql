@@ -1,5 +1,5 @@
 CREATE TABLE public.cars (
-    id integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     manufacturer text,
     model text,
     generation text,
@@ -15,7 +15,7 @@ CREATE TABLE public.comparisoncars (
     carid integer
 );
 CREATE TABLE public.comparisons (
-    id integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     name text,
     userid integer,
     kmyear integer,
@@ -27,7 +27,7 @@ CREATE TABLE public.nedctaxes (
     price integer
 );
 CREATE TABLE public.users (
-    id integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     password text,
     email text
 );
