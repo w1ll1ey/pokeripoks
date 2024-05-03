@@ -7,8 +7,8 @@ from secrets import token_hex
 from os import abort
 import re
 
-##TODO: WLTP:n lisääminen NEDC-mittauksen rinnalle if elif lauseilla
-##TODO: dropdown-menut auton lisäämiseksi vertailuun
+##TODO: WLTP:n lisääminen NEDC-mittauksen rinnalle if elif lauseilla (kurssin ulkopuolella, jatkokehittelyssä)
+##TODO: dropdown-menut auton lisäämiseksi vertailuun (kurssin ulkopuolella, jatkokehittelyssä)
 
 
 @app.route("/")
@@ -141,16 +141,3 @@ def comparison():
         return render_template("comparison.html", cardatazip = cardatazip, comparisondata = comparisondata, comparisoncars = comparisoncars)
     else:
         return render_template("comparison.html", comparisondata = comparisondata)
-
-
-
-
-
-
-@app.route("/registered", methods=["POST"])
-def registered():
-    return "Vahvistussähköposti lähetetty osoitteeseen " + request.form["email"] + "."
-
-@app.route("/signin")
-def signin():
-    return render_template("signin.html", username=request.form["username"])
