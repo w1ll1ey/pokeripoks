@@ -1,4 +1,5 @@
 from app import app
+from db import nedctaxvalues
 import qry
 from flask import redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -80,6 +81,9 @@ def submit():
     if len(type) > 50:
         return render_template("error.html", error="Tyyppi on liian pitkä.")
     nedcprice = qry.get_nedcprice(co2nedc)
+    if nedcprice == None:
+        nedctaxvalues()
+        nedcprice = qry.get_nedcprice(co2nedc)
     qry.add_car(manufacturer, model, gen, type, avgconsumption, fuel, grossweight, co2nedc, nedcprice)
     success = True
     return render_template("createcar.html", manufacturer = manufacturer, model = model, type = type, success = success)
