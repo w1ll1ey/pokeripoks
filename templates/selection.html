@@ -22,7 +22,7 @@
             <input type="text" required name="type">
             <br>
             Vakuutuskulusi tälle autolle:
-            <input type="number" required name="insurance" step=".01">euroa</p>
+            <input type="number" required name="insurance" step=".01" min="0" max="5000">euroa</p>
             <p><input type="submit" value="Lisää auto vertailuun"></p>
             <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
