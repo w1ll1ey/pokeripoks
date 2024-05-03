@@ -1,32 +1,39 @@
-<a href="/">Etusivu</a>
-{% if success %}
-<p>{{manufacturer}} {{ model }} {{ type }} tallennettu järjestelmään onnistuneesti!</p>
-{% endif %}
-<form action="/submit" method="POST">
-    <p>Auton tiedot:</p>
-    <p>Merkki:
-    <input type="text" required name="manufacturer">
-    <br>
-    Malli:
-    <input type="text" required name="model">
-    <br>
-    Sukupolvi (esim. Gen 7):
-    <input type="text" required name="generation">
-    <br>
-    Tyyppi (esim. 2.0TDI):
-    <input type="text" required name="type">
-    <br>
-    Käyttövoima:
-    <input type="radio" name="fuel" value="gas"> Bensiini
-    <input type="radio" name="fuel" value="diesel"> Diesel    
-    <br>
-    Kokonaismassa:
-    <input type="number" required name="grossweight">
-    <br>
-    Yhdistetty polttoaineenkulutus:
-    <input type="number" required name="avgconsumption" step=".1">
-    <br>
-    CO2-Päästöt (NEDC-mittauksella):
-    <input type="number" required name="CO2NEDC">g / 100 km</p>
-    <p><input type="submit" value="Tallenna auto järjestelmään"></p>
-    </form>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="static/style.css" type="text/css">
+
+<body>
+    <h1><a href="/">Autovertailusovellus</a></h1>
+    <div class = 'content'>
+        {% if success %}
+        <p>{{manufacturer}} {{ model }} {{ type }} tallennettu järjestelmään onnistuneesti!</p>
+        {% endif %}
+        <form action="/submit" method="POST">
+            <p>Auton tiedot:</p>
+            <p>Merkki:
+            <input type="text" required name="manufacturer">
+            <br>
+            Malli:
+            <input type="text" required name="model">
+            <br>
+            Sukupolvi (esim. Gen 7):
+            <input type="text" required name="generation">
+            <br>
+            Tyyppi (esim. 2.0TDI):
+            <input type="text" required name="type">
+            <br>
+            Käyttövoima:
+            <input type="radio" name="fuel" value="gas"> Bensiini
+            <input type="radio" name="fuel" value="diesel"> Diesel    
+            <br>
+            Kokonaismassa:
+            <input type="number" required name="grossweight">
+            <br>
+            Yhdistetty polttoaineenkulutus:
+            <input type="number" required name="avgconsumption" step=".1">
+            <br>
+            CO2-Päästöt (NEDC-mittauksella):
+            <input type="number" required name="CO2NEDC">g / 100 km</p>
+            <p><input type="submit" value="Tallenna auto järjestelmään"></p>
+            </form>
+    </div>
+</body>

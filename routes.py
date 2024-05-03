@@ -110,7 +110,7 @@ def comparison():
         cardatazip = zip(cardata, insurances)
         return render_template("comparison.html", cardatazip = cardatazip, comparisondata = comparisondata, comparisoncars = comparisoncars)
     else:
-        return render_template("comparison.html")
+        return render_template("comparison.html", comparisondata = comparisondata)
 
 
 

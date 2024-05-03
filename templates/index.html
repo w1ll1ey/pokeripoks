@@ -1,46 +1,69 @@
-{% if session.email %}
-<p>Olet kirjautunut sähköpostilla {{ session.email }}</p>
-<p><a href="/logout">Kirjaudu ulos</a></p>
-<p><a href="/createcar">Lisää auto</a></p>
-<p>Luo uusi vertailu:</p>
-<form action="/createcomparison" method="POST">
-<p>Nimi:
-<input type="text" required name="name">
-<br>
-Ajomäärä vuodessa:
-<input type="number" required name="kmyear" step="1000">kilometriä
-<br>
-Bensiinin keskihinta alueellasi:
-<input type="number" required name="gasprice" step=".01" min="1" max="3">€ / l
-<br>
-Dieselin keskihinta alueellasi:
-<input type="number" required name="dieselprice" step=".01" min="1" max="3">€ / l</p>
-<input type="submit" value="Luo vertailu">
-</form>
-<p><label for="comparisons">Vertailusi:</label></p>
-<form action="/comparison" method="POST">
-<select name="comparison" id="comparison">
-  {% for comparison in comparisons %}
-    <option value={{comparison[1]}}>{{comparison[0]}}</option>
-  {% endfor %}
-</select>
-<input type="submit" value="Valitse">
-</form>
-{% else %}
-<form action="/login" method="POST">
-<p>Sähköposti:<br>
-<input type="email" name="email"></p>
-<p>Salasana:<br>
-<input type="password" name="password"></p>
-<input type="submit" value="Kirjaudu sisään">
-</form>
-<br>
-<form action="/register" method="POST">
-<p>Sähköposti:<br>
-<input type="email" name="email"></p>
-<p>Salasana:<br>
-<input type="password" name="password"></p>
-<br>
-<input type="submit" value="Rekisteröidy">
-</form>
-{% endif %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="static/style.css" type="text/css">
+
+<body>
+  <h1>Autovertailusovellus</h1>
+  <div class="content">
+  {% if session.email %}
+    <div class="login">
+      <p>Olet kirjautunut sähköpostilla {{ session.email }}</p>
+      <p><a href="/logout">Kirjaudu ulos</a></p>
+    </div>
+    <p><a href="/createcar">Lisää auto</a></p>
+    <p>Luo uusi vertailu:</p>
+    <form action="/createcomparison" method="POST">
+      <p>Nimi:
+      <input type="text" required name="name">
+      <br>
+      Ajomäärä vuodessa:
+      <input type="number" required name="kmyear" step="1000">kilometriä
+      <br>
+      Bensiinin keskihinta alueellasi:
+      <input type="number" required name="gasprice" step=".01" min="1" max="3">€ / l
+      <br>
+      Dieselin keskihinta alueellasi:
+      <input type="number" required name="dieselprice" step=".01" min="1" max="3">€ / l</p>
+      <input type="submit" value="Luo vertailu">
+    </form>
+      <p><label for="comparisons">Vertailusi:</label></p>
+      <form action="/comparison" method="POST">
+      <select name="comparison" id="comparison">
+        {% for comparison in comparisons %}
+          <option value={{comparison[1]}}>{{comparison[0]}}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Valitse">
+    </form>
+  {% else %}
+    <div class="login">
+      <form action="/login" method="POST">
+        <p>Sähköposti:<br>
+        <input type="email" name="email"></p>
+        <p>Salasana:<br>
+        <input type="password" name="password"></p>
+        <input type="submit" value="Kirjaudu sisään">
+        </form>
+        <br>
+        <form action="/register" method="POST">
+        <p>Sähköposti:<br>
+        <input type="email" name="email"></p>
+        <p>Salasana:<br>
+        <input type="password" name="password"></p>
+        <br>
+        <input type="submit" value="Rekisteröidy">
+      </form>
+    </div>
+    <div class="overview">
+    Tervetuloa Autovertailusovellukseen! Tämän sovelluksen tarkoitus on toimia työkaluna sinulle,
+    joka haluat vertailla autojen ominaisuuksia keskenään. Sovelluksen nykyisellä tasolla sen tarkoitus on
+    auttaa auton valinnassa erityisesti kulujen näkökulmasta. Sillä pystyy laskemaan kulutuksesta, veroista
+    ja vakuutuksista muodostuvan kokonaiskuluerän vuodessa. Käyttäjä joutuu itse lisäämään autojen tiedot
+    yhteiseen tietokantaan, ainakin vielä toistaiseksi. Oleellista on kuitenkin, että kaikki vertailut
+    tallentuvat käyttäjän omalle tilille, joten niihin voi palata myöhemmin. Tulevaisuudessa sovellus tulee
+    laajentumaan pelkästä kululaskurista kokonaisvaltaisemmaksi vertailutyökaluksi ja tarkoitus on myös
+    luoda sovellukselle valmis tietokanta sekä lisätä muutenkin sovelluksen käyttäjäystävällisyyttä.
+    </div>
+  {% endif %}
+  </div>
+</body>
+

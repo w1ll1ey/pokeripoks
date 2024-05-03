@@ -1,22 +1,29 @@
-<a href="/">Etusivu</a>
-{% if success %}
-<p>Auto lisätty vertailuun!</p>
-{% endif %}
-<form action="/addcar" method="POST">
-    <p>Auton tiedot:</p>
-    <p>Merkki:
-    <input type="text" required name="manufacturer">
-    <br>
-    Malli:
-    <input type="text" required name="model">
-    <br>
-    Sukupolvi:
-    <input type="text" required name="generation">
-    <br>
-    Tyyppi (esim. 2.0TDI)
-    <input type="text" required name="type">
-    <br>
-    Vakuutuskulusi tälle autolle:
-    <input type="number" required name="insurance" step=".01">euroa</p>
-    <p><input type="submit" value="Lisää auto vertailuun"></p>
-    </form>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="static/style.css" type="text/css">
+
+<body>
+    <h1><a href="/">Autovertailusovellus</a></h1>
+    <div class = 'content'>
+        {% if success %}
+        <p>Auto lisätty vertailuun!</p>
+        {% endif %}
+        <form action="/addcar" method="POST">
+            <p>Auton tiedot:</p>
+            <p>Merkki:
+            <input type="text" required name="manufacturer">
+            <br>
+            Malli:
+            <input type="text" required name="model">
+            <br>
+            Sukupolvi:
+            <input type="text" required name="generation">
+            <br>
+            Tyyppi (esim. 2.0TDI)
+            <input type="text" required name="type">
+            <br>
+            Vakuutuskulusi tälle autolle:
+            <input type="number" required name="insurance" step=".01">euroa</p>
+            <p><input type="submit" value="Lisää auto vertailuun"></p>
+            </form>
+    </div>
+</body>
