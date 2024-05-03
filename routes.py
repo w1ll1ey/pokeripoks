@@ -4,10 +4,10 @@ from flask import redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from secrets import token_hex
 from os import abort
+import re
 
 ##TODO: WLTP:n lisääminen NEDC-mittauksen rinnalle if elif lauseilla
 ##TODO: dropdown-menut auton lisäämiseksi vertailuun
-##TODO: vakuutusten lisääminen kululaskentaan
 
 
 @app.route("/")
@@ -37,8 +37,15 @@ def login():
 
 @app.route("/register", methods=["POST"])
 def register():
+    reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+    pat = re.compile(reg)
     email = request.form["email"]
     password = request.form["password"]
+    mat = re.search(pat, password)
+    if len(email) > 320:
+        return render_template("error.html", error="Sähköpostiosoite on liian pitkä.")
+    if not mat:
+        return render_template("error.html", error="Salasanan täytyy olla 6-20 merkkiä pitkä ja sisältää vähintään yksi erikoismerkki, yksi kirjain ja yksi iso kirjain.")
     hash_value = generate_password_hash(password)
     qry.add_userdata(email, hash_value)
     return redirect("/")
