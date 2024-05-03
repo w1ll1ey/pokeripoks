@@ -2,6 +2,8 @@ from app import app
 import qry
 from flask import redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
+from secrets import token_hex
+from os import abort
 
 ##TODO: WLTP:n lisääminen NEDC-mittauksen rinnalle if elif lauseilla
 ##TODO: dropdown-menut auton lisäämiseksi vertailuun
@@ -28,6 +30,7 @@ def login():
         hash_value = qry.get_userdata(email).password
         if check_password_hash(hash_value, password):
             session["email"] = email
+            session["csrf_token"] = token_hex(16)
             return redirect("/")
         else:
             return "Väärä salasana!"
@@ -51,6 +54,8 @@ def createcar():
 
 @app.route("/submit", methods=["POST"])
 def submit():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     manufacturer = request.form["manufacturer"]
     model = request.form["model"]
     gen = request.form["generation"]
@@ -66,6 +71,8 @@ def submit():
 
 @app.route("/createcomparison", methods=["POST"])
 def createcomparison():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     email = session["email"]
     name = request.form["name"]
     kmyear = request.form["kmyear"]
@@ -83,6 +90,8 @@ def editcomparison():
 
 @app.route("/addcar", methods=["POST"])
 def addcar():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     manufacturer = request.form["manufacturer"]
     model = request.form["model"]
     gen = request.form["generation"]

@@ -24,6 +24,7 @@
             Vakuutuskulusi tälle autolle:
             <input type="number" required name="insurance" step=".01">euroa</p>
             <p><input type="submit" value="Lisää auto vertailuun"></p>
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
     </div>
 </body>

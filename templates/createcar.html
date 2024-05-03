@@ -34,6 +34,7 @@
             CO2-Päästöt (NEDC-mittauksella):
             <input type="number" required name="CO2NEDC">g / 100 km</p>
             <p><input type="submit" value="Tallenna auto järjestelmään"></p>
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>
     </div>
 </body>

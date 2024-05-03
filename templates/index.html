@@ -24,6 +24,7 @@
       Dieselin keskihinta alueellasi:
       <input type="number" required name="dieselprice" step=".01" min="1" max="3">€ / l</p>
       <input type="submit" value="Luo vertailu">
+      <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
       <p><label for="comparisons">Vertailusi:</label></p>
       <form action="/comparison" method="POST">
