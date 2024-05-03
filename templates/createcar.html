@@ -26,13 +26,13 @@
             <input type="radio" name="fuel" value="diesel"> Diesel    
             <br>
             Kokonaismassa:
-            <input type="number" required name="grossweight">
+            <input type="number" required name="grossweight" step="1" min="1" max="5000">kg
             <br>
             Yhdistetty polttoaineenkulutus:
-            <input type="number" required name="avgconsumption" step=".1">
+            <input type="number" required name="avgconsumption" step=".1" min="0.1" max="100">l / 100km
             <br>
             CO2-Päästöt (NEDC-mittauksella):
-            <input type="number" required name="CO2NEDC">g / 100 km</p>
+            <input type="number" required name="CO2NEDC" step="1" min="0" max="1000">g / 100 km</p>
             <p><input type="submit" value="Tallenna auto järjestelmään"></p>
             <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
             </form>

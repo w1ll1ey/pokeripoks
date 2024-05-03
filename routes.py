@@ -71,6 +71,14 @@ def submit():
     fuel = request.form["fuel"]
     co2nedc = request.form["CO2NEDC"]
     grossweight = request.form["grossweight"]
+    if len(manufacturer) > 50:
+        return render_template("error.html", error="Merkki on liian pitkä.")
+    if len(model) > 50:
+        return render_template("error.html", error="Malli on liian pitkä.")
+    if len(gen) > 20:
+        return render_template("error.html", error="Sukupolvi on liian pitkä.")
+    if len(type) > 50:
+        return render_template("error.html", error="Tyyppi on liian pitkä.")
     nedcprice = qry.get_nedcprice(co2nedc)
     qry.add_car(manufacturer, model, gen, type, avgconsumption, fuel, grossweight, co2nedc, nedcprice)
     success = True
@@ -85,6 +93,8 @@ def createcomparison():
     kmyear = request.form["kmyear"]
     gasprice = float(request.form["gasprice"]) * 100
     dieselprice = float(request.form["dieselprice"]) * 100
+    if len(name) > 50:
+        return render_template("error.html", error="Vertailun nimi on liian pitkä.")
     userid = qry.get_user_id(email)
     qry.add_comparison(name, userid, kmyear, gasprice, dieselprice)
     value = qry.get_comparisonid(name)
