@@ -25,6 +25,7 @@ CREATE TABLE public.comparisons (
 CREATE TABLE public.nedctaxes (
     co2 integer,
     price integer
+    insurance integer
 );
 CREATE TABLE public.users (
     id SERIAL PRIMARY KEY,

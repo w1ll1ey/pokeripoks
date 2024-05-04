@@ -78,6 +78,9 @@ def get_nedcprice(co2nedc):
     sql = text("SELECT price FROM nedctaxes WHERE co2<=:co2nedc ORDER BY price DESC")
     result = db.session.execute(sql, {"co2nedc":co2nedc})
     extract = result.fetchone()
-    for value in extract:
-        nedcprice = value
-    return nedcprice
+    if extract != None:
+        for value in extract:
+            nedcprice = value
+        return nedcprice
+    else:
+        return None
