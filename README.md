@@ -33,14 +33,14 @@ $ flask run
 - käyttäjä voi luoda tunnukset ja kirjautua niillä sisään
 - käyttäjä voi luoda auton yhteiseen tietokantaan ja antaa sille tietoja
 - käyttäjä voi luoda vertailuja henkilökohtaisilla parametreillä ja lisätä niihin autoja
-- sovellus hyödyntää tietokannan tietoja ja sen lisäksi että esittelee ne vertailussa laskee niistä myös uusia tietoja, kuten käyttökustannusten osa-alueita (polttoaine, verot jne.) ja kokonaisuuksia
+- sovellus hyödyntää tietokannan tietoja ja sen lisäksi että esittelee ne vertailussa laskee niistä myös uusia tietoja, kuten käyttökustannusten osa-alueita (polttoaine, verot, vakuutukset jne.) ja kokonaisuuksia
 
-## TODO:
+## TODO (SOVELLUKSEN TULEVAISUUS KURSSIN JÄLKEEN):
 
+- valmis tietokanta autoista
 - mahdollisuus syöttää ja hyödyntää enemmän dataa autoista
 - mahdollisuus syöttää enemmän tietoja vertailun yksilöintiä varten
 - parempi visuaalinen toteutus ja muotoilu etenkin vertailun kohdalta
 - mahdollinen: käyttäjät voi syöttää kokemuksia omistamistaan autoista ja siten esim. keskimääräisiä huoltokustannuksia voisi saada selville
 - käytettävyyden parantaminen (merkittävästi)
-- luonnoskoodien poisto
 
